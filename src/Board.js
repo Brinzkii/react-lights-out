@@ -95,31 +95,34 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
 
 	// if the game is won, just show a winning msg & render nothing else
 
-	if (hasWon()) return <h1>You won, great job!</h1>;
+	if (hasWon()) return <h1 className="winMsg">You won, great job!</h1>;
 
 	// make table board
 
 	return (
-		<table>
-			<tbody>
-				{board.map((row, rIdx) => {
-					return (
-						<tr key={rIdx}>
-							{row.map((c, cIdx) => {
-								return (
-									<Cell
-										flipCellsAroundMe={() => flipCellsAround(`${rIdx}-${cIdx}`)}
-										isLit={c}
-										key={`${rIdx}-${cIdx}`}
-										pos={`${rIdx}-${cIdx}`}
-									/>
-								);
-							})}
-						</tr>
-					);
-				})}
-			</tbody>
-		</table>
+		<>
+			<h1 className="Board-title">Turn all the lights off!</h1>
+			<table className="Board">
+				<tbody className="Board-body">
+					{board.map((row, rIdx) => {
+						return (
+							<tr className="Board-row" key={rIdx}>
+								{row.map((c, cIdx) => {
+									return (
+										<Cell
+											flipCellsAroundMe={() => flipCellsAround(`${rIdx}-${cIdx}`)}
+											isLit={c}
+											key={`${rIdx}-${cIdx}`}
+											pos={`${rIdx}-${cIdx}`}
+										/>
+									);
+								})}
+							</tr>
+						);
+					})}
+				</tbody>
+			</table>
+		</>
 	);
 }
 
